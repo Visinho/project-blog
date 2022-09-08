@@ -19,7 +19,7 @@ export default function SinglePost() {
                 <span className="singlePostAuthor"><b>ELVIS VISINHO</b></span>
                 <span className="singlePostDate"><b>1 hr ago</b></span>
             </div>
-            <p>
+            <p className='singlePostDesc'>
                 Keep in mind, when two enemies are talking, they're not fighting, they're talking. They might be yelling and screaming, but at least they're talking. 
                 It's when the talking ceases that the ground becomes fertile for violence.
                 It's one thing to say, 'I don't like what you said to me and I find it rude and offensive,' 
