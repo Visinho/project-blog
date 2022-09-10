@@ -13,6 +13,7 @@ import Settings from "./pages/settings/Settings";
 import Single from "./pages/single/Single";
 
 function App() {
+  const user = false;
   return (
   <Router>
    <TopBar/>
@@ -21,16 +22,16 @@ function App() {
       <Home/>
     </Route>
     <Route path="/register">
-      <Register/>
+      {user ? <Home/> : <Register/>}
     </Route>
     <Route path="/login">
-      <Login/>
+      {user ? <Home/> :<Login/>}
     </Route>
     <Route path="/write">
-      <Write/>
+      {user ? <Write/> : <Register/>}
     </Route>
     <Route path="/settings">
-      <Settings/>
+      {user ? <Settings /> : <Register/>}
     </Route>
     <Route path="/post/:postId">
       <Single/>
