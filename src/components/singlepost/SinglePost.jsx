@@ -8,6 +8,7 @@ export default function SinglePost() {
   const location = useLocation()
   const path = (location.pathname.split("/")[2])
   const [post, setPost] = useState({})
+  const PF = "http://localhost:5000/images/";
 
   useEffect(() =>{
     const getPost = async () => {
@@ -24,7 +25,7 @@ export default function SinglePost() {
         <img 
         className='singlePostImg'
         // src='https://media.istockphoto.com/photos/full-residential-house-fire-picture-id1404260690?b=1&k=20&m=1404260690&s=170667a&w=0&h=aKWFROjy0p0E2DHAEPxvWAJeqz_vwxdofN_Egfe96bA='
-        src={post.photo}
+        src={PF + post.photo}
         alt='ggg' />
           )}
             <h1 className="singlePostTitle">
