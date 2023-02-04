@@ -12,6 +12,10 @@ export default function SinglePost() {
   const [post, setPost] = useState({})
   const PF = "http://localhost:5000/images/";
   const { user } = useContext(Context); 
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [updateMode, setUpdateMode] = useState(false);
+
   
 
   useEffect(() =>{
@@ -45,7 +49,7 @@ export default function SinglePost() {
                 {post.title}
                 {post.username === user?.username && 
                 <div className="singlePostEdit">
-                    <i class="singlePostIcon fa-regular fa-pen-to-square"></i>
+                    <i class="singlePostIcon fa-regular fa-pen-to-square" onClick={()=>setUpdateMode(true)}></i>
                     <i class="singlePostIcon fa-solid fa-trash-can" onClick={handleDelete}></i>
                 </div>
                 }
