@@ -5,16 +5,18 @@ import { Context } from '../../context/Context';
 import axios from 'axios';
 
 export default function Settings() {
-  const { user } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
+  const PF = "http://localhost:5000/images/"
 
 
 
   const handleSubmit = async (e) => {
+    dispatch({type: "UPDATE_START"})
     e.preventDefault();
     const updatedUser = {
       userId: user._id,
@@ -31,9 +33,12 @@ export default function Settings() {
       } catch (err) {}
     }
     try {
-      await axios.put("http://localhost:5000/api/users/" + user._id, updatedUser);
+      const res = await axios.put("http://localhost:5000/api/users/" + user._id, updatedUser);
       setSuccess(true);
-    } catch (error) {}
+    dispatch({type: "UPDATE_SUCCESS", payload: res.data})
+    } catch (error) {
+    dispatch({type: "UPDATE_FAILURE"})
+    }
   };
 
 
@@ -49,7 +54,7 @@ export default function Settings() {
             <div className="settingsPP">
                 <img 
                     // src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YmxvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YmxvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"  
-                    src={user.profilePic}  
+                    src={file ? URL.createObjectURL(file) : PF + user.profilePic}  
                     alt=''
                 />
                 <label htmlFor='fileInput'>
